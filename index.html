@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#173d2b">
 <title>Kerala Fresh Spices | Authentic Kerala Spices</title>
-<meta name="description" content="Shop authentic Kerala spices. Order black pepper, cardamom, cinnamon and more across India.">
 
 <style>
 :root {
@@ -17,6 +16,7 @@
 }
 
 * { box-sizing: border-box; }
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -30,26 +30,24 @@ header {
   background: var(--green);
   color: white;
   text-align: center;
-  padding: 24px 12px;
+  padding: 25px 12px;
 }
 
 header h1 {
   margin: 0;
-  font: bold 32px Georgia, serif;
+  font-family: Georgia, serif;
+  font-size: 32px;
 }
 
-header p {
-  color: var(--gold);
-  margin-bottom: 0;
-}
+header p { color: var(--gold); }
 
 nav {
   background: #10291d;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
-  padding: 14px 8px;
+  gap: 18px;
+  padding: 15px 8px;
 }
 
 nav a {
@@ -59,65 +57,46 @@ nav a {
 }
 
 .hero {
-  text-align: center;
-  color: white;
-  padding: 55px 20px;
   background: linear-gradient(135deg, #244b30, #587447);
+  color: white;
+  text-align: center;
+  padding: 50px 18px;
 }
 
 .hero h2 {
-  font: bold 38px Georgia, serif;
-  margin-top: 0;
+  font: bold 36px Georgia, serif;
 }
 
 .hero p {
-  max-width: 600px;
-  margin: 0 auto 25px;
+  max-width: 650px;
+  margin: auto;
   line-height: 1.8;
-}
-
-.btn {
-  display: inline-block;
-  padding: 13px 17px;
-  border: 0;
-  border-radius: 7px;
-  background: var(--gold);
-  color: #252519;
-  font-size: 15px;
-  font-weight: bold;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.btn-green {
-  background: var(--green);
-  color: white;
 }
 
 .section {
   max-width: 1100px;
   margin: auto;
-  padding: 35px 16px;
+  padding: 30px 15px;
 }
 
 .section h2 {
-  color: var(--green);
   text-align: center;
-  font: bold 30px Georgia, serif;
+  color: var(--green);
+  font: bold 29px Georgia, serif;
 }
 
 .subtitle {
   text-align: center;
   color: #666;
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 #search {
   display: block;
   width: 100%;
   max-width: 500px;
+  margin: 22px auto;
   padding: 14px;
-  margin: 24px auto;
   border: 1px solid #d8d0bd;
   border-radius: 8px;
   font-size: 16px;
@@ -130,52 +109,75 @@ nav a {
 }
 
 .card {
-  min-width: 0;
   background: white;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 3px 12px #00000010;
-  padding-bottom: 14px;
+  box-shadow: 0 3px 12px #00000012;
+  padding-bottom: 15px;
+  min-width: 0;
 }
 
-.card img {
-  width: 100%;
-  height: 145px;
-  object-fit: cover;
-  background: #eee5d2;
+.spice-picture {
+  height: 115px;
+  background: #e9dfc9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 55px;
 }
 
 .card h3 {
+  margin: 12px 10px 7px;
   font-size: 16px;
-  margin: 12px 10px 6px;
 }
 
 .description {
-  color: #666;
+  margin: 0 10px;
   font-size: 12px;
+  color: #666;
   line-height: 1.5;
-  margin: 0 10px 10px;
+  min-height: 36px;
 }
 
 .price {
   color: var(--green);
   font-weight: bold;
-  margin: 10px;
+  margin: 12px 10px;
+  font-size: 17px;
 }
 
 .card select {
+  display: block;
   width: calc(100% - 20px);
   margin: 10px;
-  padding: 10px 5px;
+  padding: 10px 4px;
   border: 1px solid #ddd;
   border-radius: 6px;
   background: white;
 }
 
+.btn {
+  display: inline-block;
+  background: var(--gold);
+  color: #222;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-green {
+  background: var(--green);
+  color: white;
+}
+
 .card .btn {
+  display: block;
   width: calc(100% - 20px);
-  margin: 0 10px;
-  padding: 11px 5px;
+  margin: 10px;
 }
 
 .box {
@@ -191,13 +193,13 @@ nav a {
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  padding: 13px 0;
+  padding: 12px 0;
   border-bottom: 1px solid #eee;
   font-size: 14px;
 }
 
 .cart-item button {
-  padding: 7px;
+  padding: 7px 10px;
   margin: 2px;
   cursor: pointer;
 }
@@ -218,7 +220,6 @@ nav a {
   border: 1px solid #d8d0bd;
   border-radius: 7px;
   font-size: 15px;
-  background: white;
 }
 
 .notice {
@@ -228,7 +229,6 @@ nav a {
   line-height: 1.7;
   font-size: 14px;
   margin: 15px 0;
-  overflow-wrap: anywhere;
 }
 
 .payment {
@@ -238,12 +238,6 @@ nav a {
   border-radius: 8px;
   line-height: 1.8;
   overflow-wrap: anywhere;
-}
-
-.small {
-  color: #777;
-  font-size: 12px;
-  line-height: 1.6;
 }
 
 .qr-wrap {
@@ -261,26 +255,33 @@ nav a {
   width: 100%;
   max-width: 320px;
   height: auto;
-  margin: 12px auto;
-  border: 1px solid #eee;
-  border-radius: 8px;
+  margin: 15px auto;
+}
+
+.small {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.7;
 }
 
 footer {
   background: var(--green);
   color: white;
   text-align: center;
-  padding: 30px 15px;
+  padding: 28px 15px;
   line-height: 1.9;
 }
 
 footer a { color: var(--gold); }
 
 @media (min-width: 700px) {
-  header h1 { font-size: 40px; }
-  .hero h2 { font-size: 48px; }
-  .products { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .card img { height: 190px; }
+  .products {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .hero h2 { font-size: 46px; }
+
+  .spice-picture { height: 150px; }
 }
 </style>
 </head>
@@ -301,4 +302,475 @@ footer a { color: var(--gold); }
 </nav>
 
 <section class="hero" id="home">
-  <h
+  <h2>The True Taste of Kerala</h2>
+  <p>
+    Discover the aroma of Kerala's famous spices.
+    Bring authentic flavours to your kitchen.
+    We welcome orders from across India.
+  </p>
+  <br>
+  <a class="btn" href="#shop">Explore Our Spices</a>
+</section>
+
+<section class="section" id="shop">
+  <h2>Our Spice Collection</h2>
+  <p class="subtitle">Choose your spices and preferred pack sizes.</p>
+
+  <input
+    id="search"
+    type="search"
+    placeholder="🔍 Search for spices..."
+    aria-label="Search spices"
+  >
+
+  <div class="products" id="products">
+
+    <article class="card" data-name="Kerala Black Pepper">
+      <div class="spice-picture">🌶️</div>
+      <h3>Kerala Black Pepper</h3>
+      <p class="description">Bold, aromatic whole peppercorns.</p>
+      <div class="price">₹90 / 100 g</div>
+      <select aria-label="Black pepper pack size">
+        <option value="100 g" data-price="90">100 g — ₹90</option>
+        <option value="250 g" data-price="210">250 g — ₹210</option>
+        <option value="500 g" data-price="400">500 g — ₹400</option>
+        <option value="1 kg" data-price="760">1 kg — ₹760</option>
+      </select>
+      <button class="btn add-button" data-name="Kerala Black Pepper">Add to Cart</button>
+    </article>
+
+    <article class="card" data-name="Green Cardamom">
+      <div class="spice-picture">🌿</div>
+      <h3>Green Cardamom</h3>
+      <p class="description">Fragrant green cardamom pods.</p>
+      <div class="price">₹180 / 100 g</div>
+      <select aria-label="Cardamom pack size">
+        <option value="100 g" data-price="180">100 g — ₹180</option>
+        <option value="250 g" data-price="430">250 g — ₹430</option>
+        <option value="500 g" data-price="840">500 g — ₹840</option>
+        <option value="1 kg" data-price="1650">1 kg — ₹1,650</option>
+      </select>
+      <button class="btn add-button" data-name="Green Cardamom">Add to Cart</button>
+    </article>
+
+    <article class="card" data-name="Cinnamon">
+      <div class="spice-picture">🪵</div>
+      <h3>Cinnamon</h3>
+      <p class="description">Sweet and warming spice.</p>
+      <div class="price">₹65 / 100 g</div>
+      <select aria-label="Cinnamon pack size">
+        <option value="100 g" data-price="65">100 g — ₹65</option>
+        <option value="250 g" data-price="150">250 g — ₹150</option>
+        <option value="500 g" data-price="290">500 g — ₹290</option>
+        <option value="1 kg" data-price="560">1 kg — ₹560</option>
+      </select>
+      <button class="btn add-button" data-name="Cinnamon">Add to Cart</button>
+    </article>
+
+    <article class="card" data-name="Whole Cloves">
+      <div class="spice-picture">🌰</div>
+      <h3>Whole Cloves</h3>
+      <p class="description">Rich aroma and deep flavour.</p>
+      <div class="price">₹100 / 100 g</div>
+      <select aria-label="Cloves pack size">
+        <option value="100 g" data-price="100">100 g — ₹100</option>
+        <option value="250 g" data-price="235">250 g — ₹235</option>
+        <option value="500 g" data-price="450">500 g — ₹450</option>
+        <option value="1 kg" data-price="870">1 kg — ₹870</option>
+      </select>
+      <button class="btn add-button" data-name="Whole Cloves">Add to Cart</button>
+    </article>
+
+    <article class="card" data-name="Turmeric Powder">
+      <div class="spice-picture">🟡</div>
+      <h3>Turmeric Powder</h3>
+      <p class="description">Golden colour for everyday cooking.</p>
+      <div class="price">₹40 / 100 g</div>
+      <select aria-label="Turmeric pack size">
+        <option value="100 g" data-price="40">100 g — ₹40</option>
+        <option value="250 g" data-price="90">250 g — ₹90</option>
+        <option value="500 g" data-price="170">500 g — ₹170</option>
+        <option value="1 kg" data-price="320">1 kg — ₹320</option>
+      </select>
+      <button class="btn add-button" data-name="Turmeric Powder">Add to Cart</button>
+    </article>
+
+    <article class="card" data-name="Dry Ginger">
+      <div class="spice-picture">🫚</div>
+      <h3>Dry Ginger</h3>
+      <p class="description">Traditional warming spice.</p>
+      <div class="price">₹60 / 100 g</div>
+      <select aria-label="Dry ginger pack size">
+        <option value="100 g" data-price="60">100 g — ₹60</option>
+        <option value="250 g" data-price="140">250 g — ₹140</option>
+        <option value="500 g" data-price="270">500 g — ₹270</option>
+        <option value="1 kg" data-price="520">1 kg — ₹520</option>
+      </select>
+      <button class="btn add-button" data-name="Dry Ginger">Add to Cart</button>
+    </article>
+
+    <article class="card" data-name="Mustard Seeds">
+      <div class="spice-picture">🟤</div>
+      <h3>Mustard Seeds</h3>
+      <p class="description">Essential for Indian cooking.</p>
+      <div class="price">₹25 / 100 g</div>
+      <select aria-label="Mustard seeds pack size">
+        <option value="100 g" data-price="25">100 g — ₹25</option>
+        <option value="250 g" data-price="55">250 g — ₹55</option>
+        <option value="500 g" data-price="100">500 g — ₹100</option>
+        <option value="1 kg" data-price="190">1 kg — ₹190</option>
+      </select>
+      <button class="btn add-button" data-name="Mustard Seeds">Add to Cart</button>
+    </article>
+
+    <article class="card" data-name="Kerala Spice Mix">
+      <div class="spice-picture">🧂</div>
+      <h3>Kerala Spice Mix</h3>
+      <p class="description">Aromatic blend for home cooking.</p>
+      <div class="price">₹70 / 100 g</div>
+      <select aria-label="Spice mix pack size">
+        <option value="100 g" data-price="70">100 g — ₹70</option>
+        <option value="250 g" data-price="165">250 g — ₹165</option>
+        <option value="500 g" data-price="320">500 g — ₹320</option>
+        <option value="1 kg" data-price="620">1 kg — ₹620</option>
+      </select>
+      <button class="btn add-button" data-name="Kerala Spice Mix">Add to Cart</button>
+    </article>
+
+  </div>
+
+  <p class="small">
+    Prices are temporary examples. Confirm actual prices and product
+    availability before accepting orders.
+  </p>
+</section>
+
+<section class="section" id="cart">
+  <h2>🛒 Your Shopping Cart</h2>
+
+  <div class="box">
+    <div id="cartItems">Your cart is empty.</div>
+
+    <div class="total" id="total">Subtotal: ₹0</div>
+
+    <div class="notice">
+      <strong>Delivery charges:</strong>
+      We will confirm shipping costs through WhatsApp after checking
+      your PIN code and order. Delivery is not included in the subtotal.
+    </div>
+
+    <h3>Delivery Details</h3>
+
+    <input class="field" id="customerName" placeholder="Full name">
+
+    <input
+      class="field"
+      id="customerPhone"
+      type="tel"
+      inputmode="numeric"
+      maxlength="10"
+      placeholder="10-digit mobile number"
+    >
+
+    <textarea
+      class="field"
+      id="customerAddress"
+      rows="3"
+      placeholder="Full delivery address"
+    ></textarea>
+
+    <input
+      class="field"
+      id="customerPincode"
+      inputmode="numeric"
+      maxlength="6"
+      placeholder="6-digit PIN code"
+    >
+
+    <button class="btn btn-green" id="orderButton" style="width:100%">
+      Send Order to WhatsApp
+    </button>
+  </div>
+</section>
+
+<section class="section" id="payment">
+  <h2>💳 UPI Payment</h2>
+
+  <div class="box">
+
+    <div class="payment">
+      <strong>Business UPI ID</strong>
+      <p id="upiText">anjojyothis@ybl</p>
+
+      <button class="btn" id="copyUpiButton">Copy UPI ID</button>
+      <p id="copyStatus" role="status"></p>
+    </div>
+
+    <div class="qr-wrap">
+      <h3>Scan &amp; Pay with PhonePe</h3>
+
+      <p>Scan this QR code using PhonePe or another supported UPI app.</p>
+
+      <img
+        class="qr-image"
+        src="phonepe-qr.png"
+        alt="PhonePe payment QR code for Kerala Fresh Spices"
+      >
+
+      <p><strong>Account name: Jyothis Thomas</strong></p>
+
+      <p class="small">
+        Check the recipient name and final amount before paying.
+      </p>
+    </div>
+
+    <div class="notice">
+      <strong>How to pay:</strong>
+      <ol>
+        <li>Place your order through WhatsApp.</li>
+        <li>Wait for confirmation of product availability.</li>
+        <li>Confirm delivery charges and the final amount.</li>
+        <li>Scan the QR code or use the UPI ID.</li>
+        <li>Verify the recipient and amount before paying.</li>
+      </ol>
+      Never share your UPI PIN or OTP.
+    </div>
+
+    <p class="small">
+      Payments are not automatically verified by this website.
+      The seller must confirm receipt before dispatch.
+    </p>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <h2>Contact Kerala Fresh Spices</h2>
+
+  <div class="box" style="text-align:center">
+    <p>For orders, enquiries and delivery charges:</p>
+
+    <a
+      class="btn btn-green"
+      href="https://wa.me/919425424827"
+      target="_blank"
+      rel="noopener"
+    >
+      Chat with Us on WhatsApp
+    </a>
+  </div>
+</section>
+
+<footer>
+  <strong>🌿 Kerala Fresh Spices</strong><br>
+  Authentic Kerala Spices<br>
+  WhatsApp:
+  <a href="https://wa.me/919425424827">Contact our store</a><br>
+  Fresh flavours. Kerala tradition.
+</footer>
+
+<script>
+"use strict";
+
+const STORE_WHATSAPP = "919425424827";
+const STORE_UPI = "anjojyothis@ybl";
+const cart = [];
+
+function money(amount) {
+  return "₹" + amount.toLocaleString("en-IN");
+}
+
+/* Search spices */
+document.getElementById("search").addEventListener("input", function() {
+  const query = this.value.toLowerCase().trim();
+
+  document.querySelectorAll(".card").forEach(function(card) {
+    const name = card.dataset.name.toLowerCase();
+    card.style.display = name.includes(query) ? "" : "none";
+  });
+});
+
+/* Update price when pack size changes */
+document.querySelectorAll(".card select").forEach(function(select) {
+  select.addEventListener("change", function() {
+    const card = this.closest(".card");
+    const option = this.options[this.selectedIndex];
+    const price = Number(option.dataset.price);
+
+    card.querySelector(".price").textContent =
+      money(price) + " / " + option.value;
+  });
+});
+
+/* Add products to cart */
+document.getElementById("products").addEventListener("click", function(event) {
+  const button = event.target.closest(".add-button");
+  if (!button) return;
+
+  const card = button.closest(".card");
+  const select = card.querySelector("select");
+  const option = select.options[select.selectedIndex];
+
+  const name = button.dataset.name;
+  const size = option.value;
+  const price = Number(option.dataset.price);
+
+  const existing = cart.find(function(item) {
+    return item.name === name && item.size === size;
+  });
+
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({
+      name: name,
+      size: size,
+      price: price,
+      qty: 1
+    });
+  }
+
+  renderCart();
+
+  document.getElementById("cart").scrollIntoView({
+    behavior: "smooth"
+  });
+});
+
+/* Display cart */
+function renderCart() {
+  const container = document.getElementById("cartItems");
+
+  if (cart.length === 0) {
+    container.textContent = "Your cart is empty.";
+  } else {
+    container.innerHTML = "";
+
+    cart.forEach(function(item, index) {
+      const row = document.createElement("div");
+      row.className = "cart-item";
+
+      const details = document.createElement("div");
+      details.innerHTML =
+        "<strong>" + item.name + "</strong><br>" +
+        item.size + " × " + item.qty + "<br>" +
+        money(item.price * item.qty);
+
+      const controls = document.createElement("div");
+
+      const minus = document.createElement("button");
+      minus.textContent = "−";
+      minus.type = "button";
+      minus.addEventListener("click", function() {
+        changeQty(index, -1);
+      });
+
+      const quantity = document.createElement("span");
+      quantity.textContent = " " + item.qty + " ";
+
+      const plus = document.createElement("button");
+      plus.textContent = "+";
+      plus.type = "button";
+      plus.addEventListener("click", function() {
+        changeQty(index, 1);
+      });
+
+      controls.append(minus, quantity, plus);
+      row.append(details, controls);
+      container.appendChild(row);
+    });
+  }
+
+  const subtotal = cart.reduce(function(sum, item) {
+    return sum + item.price * item.qty;
+  }, 0);
+
+  document.getElementById("total").textContent =
+    "Subtotal: " + money(subtotal);
+}
+
+function changeQty(index, amount) {
+  if (!cart[index]) return;
+
+  cart[index].qty += amount;
+
+  if (cart[index].qty <= 0) {
+    cart.splice(index, 1);
+  }
+
+  renderCart();
+}
+
+/* Copy UPI ID */
+document.getElementById("copyUpiButton").addEventListener("click", async function() {
+  const status = document.getElementById("copyStatus");
+
+  try {
+    await navigator.clipboard.writeText(STORE_UPI);
+    status.textContent = "UPI ID copied: " + STORE_UPI;
+  } catch (error) {
+    status.textContent =
+      "Please copy the UPI ID manually: " + STORE_UPI;
+  }
+});
+
+/* Send order to WhatsApp */
+document.getElementById("orderButton").addEventListener("click", function() {
+  if (cart.length === 0) {
+    alert("Your cart is empty. Please add products first.");
+    return;
+  }
+
+  const name = document.getElementById("customerName").value.trim();
+  const phone = document.getElementById("customerPhone").value.trim();
+  const address = document.getElementById("customerAddress").value.trim();
+  const pin = document.getElementById("customerPincode").value.trim();
+
+  if (!name || !phone || !address || !pin) {
+    alert("Please complete all delivery details.");
+    return;
+  }
+
+  if (!/^\d{10}$/.test(phone)) {
+    alert("Please enter a valid 10-digit mobile number.");
+    return;
+  }
+
+  if (!/^\d{6}$/.test(pin)) {
+    alert("Please enter a valid 6-digit PIN code.");
+    return;
+  }
+
+  const subtotal = cart.reduce(function(sum, item) {
+    return sum + item.price * item.qty;
+  }, 0);
+
+  const lines = cart.map(function(item) {
+    return "• " + item.name + " — " + item.size +
+      " × " + item.qty + " = " +
+      money(item.price * item.qty);
+  }).join("\n");
+
+  const message =
+    "Hello Kerala Fresh Spices, I would like to place an order:\n\n" +
+    lines +
+    "\n\nSubtotal: " + money(subtotal) +
+    "\nDelivery charge: Please confirm on WhatsApp" +
+    "\nFinal amount: To be confirmed" +
+    "\n\nCustomer name: " + name +
+    "\nMobile: " + phone +
+    "\nAddress: " + address +
+    "\nPIN code: " + pin +
+    "\n\nUPI ID: " + STORE_UPI +
+    "\nPlease confirm availability, delivery charges and the final amount before I pay.";
+
+  const url = "https://wa.me/" + STORE_WHATSAPP +
+    "?text=" + encodeURIComponent(message);
+
+  window.open(url, "_blank");
+});
+
+renderCart();
+</script>
+
+</body>
+      </html>
