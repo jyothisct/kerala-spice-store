@@ -2,32 +2,26 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#173d2b">
 
-<meta name="description"
-content="Kerala Fresh Spices - Shop authentic Kerala spices across India.">
+<title>Kerala Fresh Spices | Authentic Kerala Spices</title>
 
-<title>Kerala Fresh Spices | Authentic Spices from Kerala</title>
+<meta name="description"
+content="Shop authentic Kerala spices. Order black pepper, cardamom, cinnamon and more across India.">
 
 <style>
 :root {
   --green: #173d2b;
-  --green-light: #285b3b;
+  --green2: #285b3b;
   --gold: #e8bd60;
   --cream: #fff8eb;
-  --white: #ffffff;
   --text: #29291f;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -44,14 +38,13 @@ header {
 }
 
 header h1 {
-  font-family: Georgia, serif;
-  font-size: 32px;
   margin: 0;
+  font: bold 32px Georgia, serif;
 }
 
 header p {
   color: var(--gold);
-  margin: 10px 0 0;
+  margin-bottom: 0;
 }
 
 nav {
@@ -59,7 +52,7 @@ nav {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 22px;
+  gap: 20px;
   padding: 14px 8px;
 }
 
@@ -70,34 +63,34 @@ nav a {
 }
 
 .hero {
-  background: linear-gradient(135deg, #244b30, #587447);
   text-align: center;
   color: white;
   padding: 55px 20px;
+  background: linear-gradient(135deg, #244b30, #587447);
 }
 
 .hero h2 {
   font: bold 38px Georgia, serif;
-  margin: 0 0 18px;
+  margin-top: 0;
 }
 
 .hero p {
-  max-width: 580px;
-  margin: 0 auto 24px;
+  max-width: 600px;
+  margin: 0 auto 25px;
   line-height: 1.8;
 }
 
 .btn {
   display: inline-block;
+  padding: 13px 17px;
+  border: 0;
+  border-radius: 7px;
   background: var(--gold);
   color: #252519;
-  border: none;
-  border-radius: 7px;
-  padding: 13px 17px;
   font-size: 15px;
   font-weight: bold;
-  cursor: pointer;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .btn-green {
@@ -118,8 +111,8 @@ nav a {
 }
 
 .subtitle {
-  color: #666;
   text-align: center;
+  color: #666;
   line-height: 1.7;
 }
 
@@ -141,11 +134,12 @@ nav a {
 }
 
 .card {
+  min-width: 0;
   background: white;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 3px 12px #00000010;
-  padding-bottom: 15px;
+  padding-bottom: 14px;
 }
 
 .card img {
@@ -165,7 +159,6 @@ nav a {
   font-size: 12px;
   line-height: 1.5;
   margin: 0 10px 10px;
-  min-height: 35px;
 }
 
 .price {
@@ -175,19 +168,17 @@ nav a {
 }
 
 .card select {
-  display: block;
   width: calc(100% - 20px);
-  padding: 10px;
   margin: 10px;
-  background: white;
+  padding: 10px 5px;
   border: 1px solid #ddd;
   border-radius: 6px;
+  background: white;
 }
 
 .card .btn {
-  display: block;
   width: calc(100% - 20px);
-  margin: 10px;
+  margin: 0 10px;
   padding: 11px 5px;
 }
 
@@ -203,21 +194,21 @@ nav a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   padding: 13px 0;
   border-bottom: 1px solid #eee;
   font-size: 14px;
 }
 
 .cart-item button {
-  padding: 5px 8px;
+  padding: 7px;
   margin: 2px;
   cursor: pointer;
 }
 
 .total {
   text-align: right;
-  font-size: 22px;
+  font-size: 21px;
   font-weight: bold;
   color: var(--green);
   margin: 20px 0;
@@ -249,8 +240,14 @@ nav a {
   border: 1px solid #d3e2d0;
   padding: 15px;
   border-radius: 8px;
-  line-height: 1.7;
+  line-height: 1.8;
   overflow-wrap: anywhere;
+}
+
+.small {
+  color: #777;
+  font-size: 12px;
+  line-height: 1.6;
 }
 
 footer {
@@ -261,32 +258,13 @@ footer {
   line-height: 1.9;
 }
 
-footer a {
-  color: var(--gold);
-}
-
-.small {
-  color: #777;
-  font-size: 12px;
-  line-height: 1.6;
-}
+footer a { color: var(--gold); }
 
 @media (min-width: 700px) {
-  header h1 {
-    font-size: 40px;
-  }
-
-  .hero h2 {
-    font-size: 48px;
-  }
-
-  .products {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .card img {
-    height: 190px;
-  }
+  header h1 { font-size: 40px; }
+  .hero h2 { font-size: 48px; }
+  .products { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .card img { height: 190px; }
 }
 </style>
 </head>
@@ -302,63 +280,52 @@ footer a {
   <a href="#home">Home</a>
   <a href="#shop">Shop Spices</a>
   <a href="#cart">My Cart</a>
-  <a href="#payment">Payment</a>
+  <a href="#payment">UPI Payment</a>
   <a href="#contact">Contact</a>
 </nav>
 
 <section class="hero" id="home">
   <h2>The True Taste of Kerala</h2>
-
   <p>
     Discover the aroma of Kerala's famous spices.
     From bold black pepper to fragrant cardamom,
     bring authentic flavours to your kitchen.
     Orders welcome from across India.
   </p>
-
   <a class="btn" href="#shop">Explore Our Spices</a>
 </section>
 
 <section class="section" id="shop">
-
   <h2>Our Spice Collection</h2>
-
-  <p class="subtitle">
-    Choose your favourite spices and pack sizes.
-  </p>
+  <p class="subtitle">Choose your favourite spices and pack sizes.</p>
 
   <input
     id="search"
     type="search"
     placeholder="🔍 Search spices..."
-    aria-label="Search products"
-    oninput="renderProducts()"
+    aria-label="Search spices"
   >
 
   <div class="products" id="products"></div>
 
   <p class="small">
-    Note: Prices shown are temporary sample prices.
-    Please confirm actual prices before accepting orders.
+    Prices are temporary examples. Confirm actual prices and
+    availability before accepting orders.
   </p>
-
 </section>
 
 <section class="section" id="cart">
-
   <h2>🛒 Your Shopping Cart</h2>
 
   <div class="box">
-
     <div id="cartItems">Your cart is empty.</div>
-
     <div class="total" id="total">Subtotal: ₹0</div>
 
     <div class="notice">
-      <strong>Delivery:</strong>
-      Shipping charges will be confirmed through WhatsApp
-      based on your location and order.
-      The displayed subtotal does not include delivery charges.
+      <strong>Delivery charges:</strong>
+      We will confirm the shipping cost through WhatsApp
+      after checking your PIN code and order.
+      The subtotal does not include delivery charges.
     </div>
 
     <h3>Delivery Details</h3>
@@ -398,69 +365,57 @@ footer a {
       autocomplete="postal-code"
     >
 
-    <button class="btn btn-green"
-      style="width:100%;"
-      onclick="placeOrder()">
+    <button
+      class="btn btn-green"
+      style="width:100%"
+      id="orderButton"
+    >
       Send Order to WhatsApp
     </button>
-
   </div>
-
 </section>
 
 <section class="section" id="payment">
-
   <h2>💳 UPI Payment</h2>
 
   <div class="box">
-
     <div class="payment">
+      <strong>Business UPI ID</strong>
+      <p id="upiText">anjojyothis@ybl</p>
 
-      <strong>Business UPI ID</strong><br>
-
-      <span id="upiText">anjojyothis@ybl</span>
-
-      <br><br>
-
-      <button class="btn" onclick="copyUPI()">
+      <button class="btn" id="copyUpiButton">
         Copy UPI ID
       </button>
 
+      <p id="copyStatus" role="status"></p>
     </div>
 
     <div class="notice">
       <strong>How to pay:</strong>
-
       <ol>
-        <li>Send your order to us through WhatsApp.</li>
-        <li>Wait for confirmation of product availability
-            and delivery charges.</li>
-        <li>Ask us to confirm the final amount payable.</li>
-        <li>Open your UPI app and enter the verified UPI ID.</li>
+        <li>Send your order through WhatsApp.</li>
+        <li>Wait for confirmation of product availability.</li>
+        <li>Ask us to confirm delivery charges and the final amount.</li>
+        <li>Open your UPI app and enter the UPI ID shown above.</li>
         <li>Verify the recipient name and amount before paying.</li>
-        <li>Send the payment confirmation to us on WhatsApp.</li>
+        <li>Share payment confirmation with the seller.</li>
       </ol>
 
-      Never share your UPI PIN or OTP with anyone.
-      Do not make payment until the order and final amount
-      have been confirmed.
+      Never share your UPI PIN or OTP. Do not pay until
+      the order and final amount have been confirmed.
     </div>
 
     <p class="small">
-      Payment is not automatically verified by this website.
+      This website does not automatically verify UPI payments.
       The seller must confirm receipt before dispatch.
     </p>
-
   </div>
-
 </section>
 
 <section class="section" id="contact">
-
   <h2>Contact Kerala Fresh Spices</h2>
 
-  <div class="box" style="text-align:center;">
-
+  <div class="box" style="text-align:center">
     <p>For orders, product enquiries and delivery charges:</p>
 
     <a
@@ -471,219 +426,137 @@ footer a {
     >
       Chat with Us on WhatsApp
     </a>
-
   </div>
-
 </section>
 
 <footer>
   <strong>🌿 Kerala Fresh Spices</strong><br>
-
   Authentic Kerala Spices<br>
-
   WhatsApp:
-  <a href="https://wa.me/919425424827">
-    919425424827
-  </a>
-
-  <br>
-
-  <small>
-    Fresh flavours. Kerala tradition.
-  </small>
+  <a href="https://wa.me/919425424827">Contact our store</a><br>
+  <small>Fresh flavours. Kerala tradition.</small>
 </footer>
 
 <script>
 "use strict";
 
-/*
- * BUSINESS CONFIGURATION
- */
-
+/* Store configuration */
 const STORE_WHATSAPP = "919425424827";
 const STORE_UPI = "anjojyothis@ybl";
 
-/*
- * SAMPLE PRICES IN RUPEES.
- * Replace them with your actual prices before selling.
- */
-
+/* Temporary example prices in rupees */
 const productsData = [
   {
     id: 1,
     name: "Kerala Black Pepper",
     description: "Bold, aromatic whole peppercorns",
     image: "https://images.unsplash.com/photo-1599909533605-f8a7d4b9f1d8?auto=format&fit=crop&w=500&q=80",
-    prices: {
-      "100 g": 90,
-      "250 g": 210,
-      "500 g": 400,
-      "1 kg": 760
-    }
+    prices: {"100 g":90,"250 g":210,"500 g":400,"1 kg":760}
   },
-
   {
     id: 2,
     name: "Green Cardamom",
     description: "Fragrant green cardamom pods",
     image: "https://images.unsplash.com/photo-1615485500704-8e990f9900f1?auto=format&fit=crop&w=500&q=80",
-    prices: {
-      "100 g": 180,
-      "250 g": 430,
-      "500 g": 840,
-      "1 kg": 1650
-    }
+    prices: {"100 g":180,"250 g":430,"500 g":840,"1 kg":1650}
   },
-
   {
     id: 3,
     name: "Cinnamon",
     description: "Sweet and warming spice",
     image: "https://images.unsplash.com/photo-1603905179139-1d7b1d9c7d10?auto=format&fit=crop&w=500&q=80",
-    prices: {
-      "100 g": 65,
-      "250 g": 150,
-      "500 g": 290,
-      "1 kg": 560
-    }
+    prices: {"100 g":65,"250 g":150,"500 g":290,"1 kg":560}
   },
-
   {
     id: 4,
     name: "Whole Cloves",
     description: "Rich aroma and deep flavour",
     image: "https://images.unsplash.com/photo-1604495772376-9657f0035eb5?auto=format&fit=crop&w=500&q=80",
-    prices: {
-      "100 g": 100,
-      "250 g": 235,
-      "500 g": 450,
-      "1 kg": 870
-    }
+    prices: {"100 g":100,"250 g":235,"500 g":450,"1 kg":870}
   },
-
   {
     id: 5,
     name: "Turmeric Powder",
     description: "Golden colour for everyday cooking",
     image: "https://images.unsplash.com/photo-1615485500834-bc10199bc727?auto=format&fit=crop&w=500&q=80",
-    prices: {
-      "100 g": 40,
-      "250 g": 90,
-      "500 g": 170,
-      "1 kg": 320
-    }
+    prices: {"100 g":40,"250 g":90,"500 g":170,"1 kg":320}
   },
-
   {
     id: 6,
     name: "Dry Ginger",
     description: "Traditional warming spice",
     image: "https://images.unsplash.com/photo-1615485500704-8e990f9900f1?auto=format&fit=crop&w=500&q=80",
-    prices: {
-      "100 g": 60,
-      "250 g": 140,
-      "500 g": 270,
-      "1 kg": 520
-    }
+    prices: {"100 g":60,"250 g":140,"500 g":270,"1 kg":520}
   },
-
   {
     id: 7,
     name: "Mustard Seeds",
     description: "Essential for Indian cooking",
     image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=500&q=80",
-    prices: {
-      "100 g": 25,
-      "250 g": 55,
-      "500 g": 100,
-      "1 kg": 190
-    }
+    prices: {"100 g":25,"250 g":55,"500 g":100,"1 kg":190}
   },
-
   {
     id: 8,
     name: "Kerala Spice Mix",
     description: "Aromatic blend for home cooking",
     image: "https://images.unsplash.com/photo-1532336414038-cf19250c5757?auto=format&fit=crop&w=500&q=80",
-    prices: {
-      "100 g": 70,
-      "250 g": 165,
-      "500 g": 320,
-      "1 kg": 620
-    }
+    prices: {"100 g":70,"250 g":165,"500 g":320,"1 kg":620}
   }
 ];
 
 const cart = [];
 
-function money(amount) {
-  return "₹" + amount.toLocaleString("en-IN");
+function money(value) {
+  return "₹" + value.toLocaleString("en-IN");
 }
 
 function renderProducts() {
-  const query =
-    document.getElementById("search").value.trim().toLowerCase();
+  const query = document.getElementById("search").value
+    .trim().toLowerCase();
 
   const filtered = productsData.filter(product =>
     (product.name + " " + product.description)
-      .toLowerCase()
-      .includes(query)
+      .toLowerCase().includes(query)
   );
 
-  document.getElementById("products").innerHTML =
-    filtered.map(product => `
-      <article class="card">
+  const container = document.getElementById("products");
 
-        <img
-          src="${product.image}"
-          alt="${product.name}"
-          loading="lazy"
-          onerror="this.style.display='none'"
-        >
+  container.innerHTML = filtered.map(product => `
+    <article class="card">
+      <img
+        src="${product.image}"
+        alt="${product.name}"
+        loading="lazy"
+        onerror="this.style.display='none'"
+      >
 
-        <h3>${product.name}</h3>
+      <h3>${product.name}</h3>
+      <p class="description">${product.description}</p>
 
-        <p class="description">${product.description}</p>
+      <div class="price" id="price-${product.id}">
+        ${money(product.prices["100 g"])}
+      </div>
 
-        <div class="price" id="price-${product.id}">
-          ${money(product.prices["100 g"])}
-        </div>
+      <select
+        id="size-${product.id}"
+        aria-label="Pack size for ${product.name}"
+      >
+        ${Object.entries(product.prices).map(([size, price]) =>
+          `<option value="${size}">
+            ${size} — ${money(price)}
+          </option>`
+        ).join("")}
+      </select>
 
-        <select
-          id="size-${product.id}"
-          aria-label="Select pack size for ${product.name}"
-          onchange="updatePrice(${product.id})"
-        >
-          ${Object.entries(product.prices).map(([size, price]) =>
-            `<option value="${size}">
-              ${size} — ${money(price)}
-            </option>`
-          ).join("")}
-        </select>
-
-        <button
-          class="btn"
-          onclick="addToCart(${product.id})"
-        >
-          Add to Cart
-        </button>
-
-      </article>
-    `).join("") || "<p>No products found.</p>";
-}
-
-function updatePrice(id) {
-  const product = productsData.find(p => p.id === id);
-
-  const size = document.getElementById("size-" + id).value;
-
-  document.getElementById("price-" + id).textContent =
-    money(product.prices[size]);
+      <button class="btn add-button" data-id="${product.id}">
+        Add to Cart
+      </button>
+    </article>
+  `).join("") || "<p>No matching products found.</p>";
 }
 
 function addToCart(id) {
-  const product = productsData.find(p => p.id === id);
-
+  const product = productsData.find(item => item.id === id);
   const size = document.getElementById("size-" + id).value;
 
   const existing = cart.find(item =>
@@ -694,19 +567,15 @@ function addToCart(id) {
     existing.qty++;
   } else {
     cart.push({
-      id: id,
+      id,
       name: product.name,
-      size: size,
+      size,
       price: product.prices[size],
       qty: 1
     });
   }
 
   renderCart();
-
-  document.getElementById("cart").scrollIntoView({
-    behavior: "smooth"
-  });
 }
 
 function changeQty(index, change) {
@@ -729,7 +598,6 @@ function renderCart() {
   } else {
     container.innerHTML = cart.map((item, index) => `
       <div class="cart-item">
-
         <div>
           <strong>${item.name}</strong><br>
           ${item.size} × ${item.qty}<br>
@@ -737,113 +605,71 @@ function renderCart() {
         </div>
 
         <div>
-          <button onclick="changeQty(${index},-1)">−</button>
-          ${item.qty}
-          <button onclick="changeQty(${index},1)">+</button>
-        </div>
+          <button data-index="${index}" data-change="-1"
+            class="qty-button">−</button>
 
+          ${item.qty}
+
+          <button data-index="${index}" data-change="1"
+            class="qty-button">+</button>
+        </div>
       </div>
     `).join("");
   }
 
   const subtotal = cart.reduce(
-    (sum, item) => sum + item.price * item.qty,
-    0
+    (sum, item) => sum + item.price * item.qty, 0
   );
 
   document.getElementById("total").textContent =
     "Subtotal: " + money(subtotal);
 }
 
-function copyUPI() {
-  const text = STORE_UPI;
+document.getElementById("products").addEventListener("click", event => {
+  const button = event.target.closest(".add-button");
+  if (!button) return;
 
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(text)
-      .then(() => alert("UPI ID copied: " + text))
-      .catch(() => prompt("Copy this UPI ID:", text));
-  } else {
-    prompt("Copy this UPI ID:", text);
-  }
-}
+  addToCart(Number(button.dataset.id));
 
-function placeOrder() {
-  if (cart.length === 0) {
-    alert("Please add products to your cart first.");
-    return;
-  }
+  document.getElementById("cart").scrollIntoView({
+    behavior: "smooth"
+  });
+});
 
-  const name =
-    document.getElementById("customerName").value.trim();
+document.getElementById("products").addEventListener("change", event => {
+  const select = event.target;
 
-  const phone =
-    document.getElementById("customerPhone").value.trim();
+  if (!select.id.startsWith("size-")) return;
 
-  const address =
-    document.getElementById("customerAddress").value.trim();
+  const id = Number(select.id.replace("size-", ""));
+  const product = productsData.find(item => item.id === id);
 
-  const pincode =
-    document.getElementById("customerPincode").value.trim();
+  document.getElementById("price-" + id).textContent =
+    money(product.prices[select.value]);
+});
 
-  if (!name || !phone || !address || !pincode) {
-    alert("Please complete all delivery details.");
-    return;
-  }
+document.getElementById("cartItems").addEventListener("click", event => {
+  const button = event.target.closest(".qty-button");
+  if (!button) return;
 
-  if (!/^[0-9]{10}$/.test(phone)) {
-    alert("Enter a valid 10-digit mobile number.");
-    return;
-  }
-
-  if (!/^[0-9]{6}$/.test(pincode)) {
-    alert("Enter a valid 6-digit PIN code.");
-    return;
-  }
-
-  const subtotal = cart.reduce(
-    (sum, item) => sum + item.price * item.qty,
-    0
+  changeQty(
+    Number(button.dataset.index),
+    Number(button.dataset.change)
   );
+});
 
-  const lines = cart.map(item =>
-    item.name + " | " +
-    item.size + " × " +
-    item.qty + " = " +
-    money(item.price * item.qty)
-  );
+/* Copy UPI ID, with a mobile-browser fallback */
+document.getElementById("copyUpiButton").addEventListener("click", async () => {
+  const status = document.getElementById("copyStatus");
 
-  const message = [
-    "NEW ORDER - KERALA FRESH SPICES",
-    "",
-    ...lines,
-    "",
-    "Product subtotal: " + money(subtotal),
-    "Delivery charges: PLEASE CONFIRM",
-    "Final payable amount: NOT YET CONFIRMED",
-    "",
-    "Customer name: " + name,
-    "Customer mobile: " + phone,
-    "Delivery address: " + address,
-    "PIN code: " + pincode,
-    "",
-    "Preferred payment: UPI",
-    "Seller UPI ID: " + STORE_UPI,
-    "",
-    "Please confirm product availability, shipping charges and final amount before payment."
-  ].join("\n");
+  try {
+    if (!navigator.clipboard || !window.isSecureContext) {
+      throw new Error("Clipboard API unavailable");
+    }
 
-  const url =
-    "https://wa.me/" +
-    STORE_WHATSAPP +
-    "?text=" +
-    encodeURIComponent(message);
+    await navigator.clipboard.writeText(STORE_UPI);
+    status.textContent = "UPI ID copied: " + STORE_UPI;
+  } catch (error) {
+    const input = document.createElement("textarea");
 
-  window.open(url, "_blank");
-}
-
-renderProducts();
-renderCart();
-</script>
-
-</body>
-</html>
+    input.value = STORE
