@@ -568,11 +568,15 @@ footer a { color: var(--gold); }
   Fresh flavours. Kerala tradition.
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 "use strict";
 
 const STORE_WHATSAPP = "919425424827";
 const STORE_UPI = "anjojyothis@ybl";
+const SUPABASE_URL = "https://vqjrqkghgwmqcsmojshf.supabase.co";
+const SUPABASE_KEY = "sb_publishable_U3nbPeJxZyWnu8CSkxxK8w_5hW2NMH1";
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const cart = [];
 
 function money(amount) {
@@ -713,8 +717,9 @@ document.getElementById("copyUpiButton").addEventListener("click", async functio
   }
 });
 
-/* Send order to WhatsApp */
-document.getElementById("orderButton").addEventListener("click", function() {
+/* Save the order in Supabase, then open WhatsApp */
+document.getElementById("orderButton").addEventListener("click", async function() {
+  const button = this;
   if (cart.length === 0) {
     alert("Your cart is empty. Please add products first.");
     return;
@@ -729,44 +734,100 @@ document.getElementById("orderButton").addEventListener("click", function() {
     alert("Please complete all delivery details.");
     return;
   }
-
   if (!/^\d{10}$/.test(phone)) {
     alert("Please enter a valid 10-digit mobile number.");
     return;
   }
-
   if (!/^\d{6}$/.test(pin)) {
     alert("Please enter a valid 6-digit PIN code.");
     return;
   }
 
-  const subtotal = cart.reduce(function(sum, item) {
-    return sum + item.price * item.qty;
-  }, 0);
+  const originalText = button.textContent;
+  button.disabled = true;
+  button.textContent = "Saving order...";
+  try {
+    const { data: products, error: productsError } = await db
+      .from("products")
+      .select("id,name")
+      .eq("is_active", true);
+    if (productsError) throw productsError;
 
-  const lines = cart.map(function(item) {
-    return "• " + item.name + " — " + item.size +
-      " × " + item.qty + " = " +
-      money(item.price * item.qty);
-  }).join("\n");
+    const { data: variants, error: variantsError } = await db
+      .from("product_variants")
+      .select("product_id,pack_size,price_paise,is_active")
+      .eq("is_active", true);
+    if (variantsError) throw variantsError;
 
-  const message =
-    "Hello Kerala Fresh Spices, I would like to place an order:\n\n" +
-    lines +
-    "\n\nSubtotal: " + money(subtotal) +
-    "\nDelivery charge: Please confirm on WhatsApp" +
-    "\nFinal amount: To be confirmed" +
-    "\n\nCustomer name: " + name +
-    "\nMobile: " + phone +
-    "\nAddress: " + address +
-    "\nPIN code: " + pin +
-    "\n\nUPI ID: " + STORE_UPI +
-    "\nPlease confirm availability, delivery charges and the final amount before I pay.";
+    const aliases = {
+      "kerala black pepper": ["black pepper", "kerala black pepper"],
+      "green cardamom": ["cardamom", "green cardamom"],
+      "cinnamon": ["cinnamon"],
+      "whole cloves": ["cloves", "whole cloves"],
+      "turmeric powder": ["turmeric", "turmeric powder"],
+      "dry ginger": ["dry ginger"],
+      "mustard seeds": ["mustard", "mustard seeds"],
+      "kerala spice mix": ["spice mix", "kerala spice mix"]
+    };
+    function normalize(s) {
+      return String(s || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+    }
+    const orderItems = cart.map(function(item) {
+      const allowed = aliases[item.name] || [item.name];
+      const product = products.find(function(p) {
+        return allowed.some(function(alias) {
+          return normalize(p.name) === normalize(alias);
+        });
+      });
+      if (!product) throw new Error("Product not found in database: " + item.name);
+      const variant = variants.find(function(v) {
+        return v.product_id === product.id && v.pack_size === item.size && v.is_active;
+      });
+      if (!variant) throw new Error("Pack size unavailable for " + item.name + ": " + item.size);
+      return {
+        product_id: product.id,
+        pack_size: item.size,
+        quantity: item.qty
+      };
+    });
 
-  const url = "https://wa.me/" + STORE_WHATSAPP +
-    "?text=" + encodeURIComponent(message);
+    const { data: orderResult, error: orderError } = await db.rpc("place_store_order", {
+      p_customer_name: name,
+      p_customer_phone: phone,
+      p_address: address,
+      p_pincode: pin,
+      p_items: orderItems
+    });
+    if (orderError) throw orderError;
 
-  window.open(url, "_blank");
+    const orderNumber = orderResult.order_number;
+    const subtotal = Number(orderResult.subtotal_paise) / 100;
+    const lines = cart.map(function(item) {
+      return "• " + item.name + " — " + item.size + " × " + item.qty +
+        " = " + money(item.price * item.qty);
+    }).join("\n");
+    const message =
+      "Hello Kerala Fresh Spices, I have placed order #" + orderNumber + ".\n\n" +
+      lines +
+      "\n\nSubtotal recorded: " + money(subtotal) +
+      "\nDelivery charge: Please confirm on WhatsApp" +
+      "\nFinal amount: To be confirmed" +
+      "\n\nCustomer name: " + name +
+      "\nMobile: " + phone +
+      "\nAddress: " + address +
+      "\nPIN code: " + pin +
+      "\n\nUPI ID: " + STORE_UPI +
+      "\nPlease confirm availability and delivery charges before payment. This order is unpaid.";
+    const url = "https://wa.me/" + STORE_WHATSAPP + "?text=" + encodeURIComponent(message);
+    alert("Order #" + orderNumber + " has been saved. WhatsApp will open so you can send the order details.");
+    window.location.href = url;
+  } catch (error) {
+    console.error("Order submission failed:", error);
+    alert("We could not save your order, so WhatsApp has not opened. Please try again. Details: " + (error.message || "Unknown error"));
+  } finally {
+    button.disabled = false;
+    button.textContent = originalText;
+  }
 });
 
 renderCart();
