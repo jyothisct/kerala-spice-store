@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kerala Fresh Spices - Admin</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+body{font-family:Arial,sans-serif;background:#f1f6f1;margin:0;color:#24352a}
+header{background:#176b3a;color:white;padding:20px}
+main{max-width:800px;margin:auto;padding:15px}
+.card{background:white;padding:16px;margin:15px 0;border-radius:12px;box-shadow:0 2px 8px #ddd}
+input,textarea,button,select{box-sizing:border-box;width:100%;padding:12px;margin:6px 0;border:1px solid #ccc;border-radius:7px;font-size:16px}
+button{background:#176b3a;color:white;border:0;font-weight:bold}
+button.gray{background:#56665b}
+.item{border:1px solid #ddd;padding:12px;margin:10px 0;border-radius:8px}
+.small{font-size:13px;color:#666}
+.hidden{display:none}
+.msg{padding:10px;background:#e8f5e9;overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<header>
+<h2>🌿 Kerala Fresh Spices</h2>
+<p>Administrator Dashboard</p>
+</header>
+<main>
+<div class="card" id="setup">
+<h3>Connect to Supabase</h3>
+<p class="small">Enter your Project URL and publishable key. They are saved only in this browser.</p>
+<input id="url" placeholder="Supabase Project URL">
+<input id="key" placeholder="Supabase publishable key">
+<button onclick="connect()">Connect</button>
+<div id="setupmsg" class="msg hidden"></div>
+</div>
+
+<div class="card hidden" id="login">
+<h3>Administrator Login</h3>
+<input id="email" type="email" placeholder="Your Supabase login email">
+<input id="password" type="password" placeholder="Password">
+<button onclick="signIn()">Sign In</button>
+<div id="loginmsg" class="msg hidden"></div>
+</div>
+
+<div id="app" class="hidden">
+<div class="card">
+<h3>Dashboard</h3>
+<p id="who"></p>
+<button class="gray" onclick="refresh()">Refresh Data</button>
+<button class="gray" onclick="logout()">Sign Out</button>
+<div id="msg" class="msg hidden"></div>
+</div>
+
+<div class="card">
+<h3>Add a Spice</h3>
+<input id="pname" placeholder="Product name">
+<textarea id="pdesc" placeholder="Product description"></textarea>
+<input id="pimage" placeholder="Image URL (optional)">
+<button onclick="addProduct()">Add Product</button>
+</div>
+
+<div class="card">
+<h3>Products, Prices and Stock</h3>
+<div id="products">Loading...</div>
+</div>
+
+<div class="card">
+<h3>Customer Orders</h3>
+<div id="orders">Loading...</div>
+</div>
+</div>
+</main>
+
+<script>
+let db=null;
+const $=id=>document.getElementById(id);
+function say(id,t){$(id).textContent=t;$(id).classList.remove('hidden')}
+
+function connect(){
+ const u=$('url').value.trim();
+ const k=$('key').value.trim();
+ if(!u.startsWith('https://')||!k){say('setupmsg','Enter a valid Project URL and publishable key.');return}
+ try{
+  db=window.supabase.createClient(u,k);
+  localStorage.setItem('spice_url',u);
+  localStorage.setItem('spice_key',k);
+  $('setup').classList.add('hidden');
+  $('login').classList.remove('hidden');
+  say('loginmsg','Connection ready. Sign in with your administrator account.');
+ }catch(e){say('setupmsg',e.message)}
+}
+async function signIn(){
+ try{
+  const {error}=await db.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});
+  if(error)throw error;
+  await showApp();
+ }catch(e){say('loginmsg','Login error: '+e.message)}
+}
+async function showApp(){
+ const {data}=await db.auth.getSession();
+ if(!data.session){$('login').classList.remove('hidden');return}
+ $('login').classList.add('hidden');
+ $('app').classList.remove('hidden');
+ $('who').textContent='Signed in as '+data.session.user.email;
+ await refresh();
+}
+function rupees(p){return '₹'+(Number(p||0)/100).toFixed(2)}
+async function refresh(){await loadProducts();await loadOrders()}
+async function loadProducts(){
+ $('products').textContent='Loading products...';
+ const {data,error}=await db.from('products').select('id,name,description,image_url,is_active,product_variants(id,pack_size,price_paise,stock_quantity)').order('name');
+ if(error){$('products').textContent='Could not load products: '+error.message;return}
+ $('products').replaceChildren();
+ if(!data.length){$('products').textContent='No products found.';return}
+ data.forEach(p=>{
+  const box=document.createElement('div');box.className='item';
+  const title=document.createElement('b');title.textContent=p.name;box.appendChild(title);
+  const desc=document.createElement('p');desc.textContent=p.description||'';box.appendChild(desc);
+  const edit=document.createElement('button');edit.textContent='Edit product details';
+  edit.onclick=async()=>{
+   const name=prompt('Product name',p.name);if(name===null)return;
+   const description=prompt('Description',p.description||'');if(description===null)return;
+   const image_url=prompt('Image URL',p.image_url||'');if(image_url===null)return;
+   const {error}=await db.from('products').update({name,description,image_url,updated_at:new Date().toISOString()}).eq('id',p.id);
+   if(error)alert(error.message);else{alert('Product updated');loadProducts()}
+  };box.appendChild(edit);
+  (p.product_variants||[]).forEach(v=>{
+   const info=document.createElement('p');
+   info.textContent=v.pack_size+' — '+rupees(v.price_paise)+' — Stock: '+v.stock_quantity;
+   box.appendChild(info);
+   const b=document.createElement('button');b.textContent='Edit price and stock';
+   b.onclick=async()=>{
+    const price=prompt('Price in rupees',String(v.price_paise/100));if(price===null)return;
+    const stock=prompt('Stock quantity',String(v.stock_quantity));if(stock===null)return;
+    if(!Number.isFinite(Number(price))||Number(price)<0||!Number.isInteger(Number(stock))||Number(stock)<0){alert('Enter a valid price and whole-number stock');return}
+    const {error}=await db.from('product_variants').update({price_paise:Math.round(Number(price)*100),stock_quantity:Number(stock)}).eq('id',v.id);
+    if(error)alert(error.message);else{alert('Price and stock updated');loadProducts()}
+   };box.appendChild(b);
+  });
+  $('products').appendChild(box)
+ })
+}
+async function addProduct(){
+ const name=$('pname').value.trim();
+ if(!name){alert('Enter a product name');return}
+ const {error}=await db.from('products').insert({name,description:$('pdesc').value.trim(),image_url:$('pimage').value.trim(),is_active:true});
+ if(error){alert('Could not add product: '+error.message);return}
+ alert('Product added. Package prices must be added separately.');
+ $('pname').value='';$('pdesc').value='';$('pimage').value='';
+ await loadProducts()
+}
+async function loadOrders(){
+ $('orders').textContent='Loading orders...';
+ const {data,error}=await db.from('orders').select('id,order_number,customer_name,customer_phone,total_paise,order_status,payment_status,created_at').order('created_at',{ascending:false}).limit(100);
+ if(error){$('orders').textContent='Orders unavailable: '+error.message;return}
+ $('orders').replaceChildren();
+ if(!data.length){$('orders').textContent='No orders yet.';return}
+ data.forEach(o=>{
+  const box=document.createElement('div');box.className='item';
+  const title=document.createElement('b');title.textContent='Order #'+o.order_number+' — '+(o.customer_name||'Customer');box.appendChild(title);
+  const details=document.createElement('p');
+  details.textContent=(o.customer_phone||'')+' | '+rupees(o.total_paise)+' | Payment: '+o.payment_status;
+  box.appendChild(details);
+  const sel=document.createElement('select');
+  ['new','awaiting_confirmation','awaiting_payment','paid','processing','dispatched','delivered','cancelled'].forEach(s=>{const op=document.createElement('option');op.value=s;op.textContent=s;if(s===o.order_status)op.selected=true;sel.appendChild(op)});
+  box.appendChild(sel);
+  const btn=document.createElement('button');btn.textContent='Save order status';
+  btn.onclick=async()=>{const {error}=await db.from('orders').update({order_status:sel.value,updated_at:new Date().toISOString()}).eq('id',o.id);if(error)alert(error.message);else alert('Order status updated')};
+  box.appendChild(btn);$('orders').appendChild(box)
+ })
+}
+async function logout(){await db.auth.signOut();$('app').classList.add('hidden');$('login').classList.remove('hidden')}
+window.addEventListener('load',async()=>{
+ const u=localStorage.getItem('spice_url'),k=localStorage.getItem('spice_key');
+ if(u&&k){$('url').value=u;$('key').value=k;connect()}
+});
+</script>
+</body>
+</html>
