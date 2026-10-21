@@ -6,7 +6,7 @@ on:
       - 'android/**'
       - '.github/workflows/build-android-apks.yml'
 permissions:
-  contents: read
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,10 +31,21 @@ jobs:
           mkdir -p release-apks
           cp android/admin/app/build/outputs/apk/debug/app-debug.apk release-apks/Kerala-Fresh-Spices-ADMIN.apk
           cp android/customer/app/build/outputs/apk/debug/app-debug.apk release-apks/Kerala-Fresh-Spices-CUSTOMER.apk
-      - name: Upload APK files
+      - name: Upload APK files as workflow artifact
         uses: actions/upload-artifact@v4
         with:
           name: Kerala-Fresh-Spices-Android-Apps
           path: release-apks/*.apk
           if-no-files-found: error
           retention-days: 30
+      - name: Publish customer APK at a stable download link
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: customer-app-latest
+          name: Kerala Fresh Spices Customer App
+          body: "Android customer shopping app. Download the CUSTOMER APK. This is a direct APK install, not a Play Store release."
+          files: release-apks/Kerala-Fresh-Spices-CUSTOMER.apk
+          overwrite_files: true
+          make_latest: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
