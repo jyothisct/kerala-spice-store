@@ -1,0 +1,37 @@
+name: Build Android APKs
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'android/**'
+      - '.github/workflows/build-android-apks.yml'
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+      - name: Build Admin APK
+        working-directory: android/admin
+        run: gradle assembleDebug
+      - name: Build Customer APK
+        working-directory: android/customer
+        run: gradle assembleDebug
+      - name: Upload APK files
+        uses: actions/upload-artifact@v4
+        with:
+          name: kerala-fresh-spices-android-apks
+          path: |
+            android/admin/app/build/outputs/apk/debug/app-debug.apk
+            android/customer/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 30
