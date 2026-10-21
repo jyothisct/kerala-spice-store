@@ -81,6 +81,8 @@ a{color:var(--dark)}.hidden{display:none!important}.msg{padding:10px;background:
 <p class="muted">After adding a product, add its pack sizes, prices and stock in Supabase or through the variant controls when available.</p>
 </div>
 <div class="card"><div class="section-title"><h3>Products, prices and stock</h3><button class="secondary" style="width:auto" onclick="loadProducts()">Reload</button></div>
+<p class="muted"><b>Temporary stock setup:</b> Set every pack variant to a random stock quantity of 1, 2 or 3. These are placeholder numbers, not verified physical inventory. Update them before accepting real orders.</p>
+<button class="danger" onclick="setTemporaryRandomStock()">Set all variant stock to random 1–3</button>
 <input id="productSearch" placeholder="Search products…" oninput="filterProducts()">
 <div id="products">Loading products…</div>
 </div>
@@ -176,6 +178,21 @@ function renderProducts(){
  });
 }
 function filterProducts(){renderProducts()}
+async function setTemporaryRandomStock(){
+ if(!confirm("This will replace stock quantities for EVERY product variant, including inactive products, with random numbers 1, 2 or 3. These are temporary placeholder values and may not match your real stock. Continue?"))return;
+ const {data,error}=await db.from("product_variants").select("id");
+ if(error){alert("Could not load variants: "+error.message);return}
+ if(!data||!data.length){alert("No product variants were found.");return}
+ let updated=0;
+ for(const v of data){
+  const qty=1+Math.floor(Math.random()*3);
+  const result=await db.from("product_variants").update({stock_quantity:qty}).eq("id",v.id);
+  if(result.error){alert("Stopped after "+updated+" updates. Error: "+result.error.message);await loadProducts();return}
+  updated++;
+ }
+ await loadProducts();
+ alert("Temporary stock quantities updated for "+updated+" variants. Each is now set to 1, 2 or 3 at random. Please replace these placeholders with actual counts before fulfilling customer orders.");
+}
 async function addProduct(){
  const name=$("pname").value.trim();if(!name){alert("Enter a product name.");return}
  const {error}=await db.from("products").insert({name,description:$("pdesc").value.trim(),image_url:$("pimage").value.trim(),is_active:true});
