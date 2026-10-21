@@ -118,9 +118,9 @@ async function signIn(){
  try{
   const {data,error}=await db.auth.signInWithPassword({email:$("email").value.trim(),password:$("password").value});
   if(error)throw error;
-  const {data:adminCheck,error:adminError}=await db.from("admin_users").select("user_id").eq("user_id",data.user.id).maybeSingle();
-  if(adminError)throw adminError;
-  if(!adminCheck){await db.auth.signOut();throw new Error("This account is not listed as a store administrator. Add its user ID to the admin_users table in Supabase.");}
+  const {data:adminCheck,error:adminError}=await db.rpc("is_store_admin");
+  if(adminError)throw new Error("Administrator check failed: "+adminError.message+" — run the administrator verification SQL provided for this site.");
+  if(adminCheck!==true){await db.auth.signOut();throw new Error("This account is not listed as a store administrator.");}
   $("login").classList.add("hidden");$("app").classList.remove("hidden");
   $("who").textContent="Signed in as "+(data.user.email||"administrator");
   await refresh();
@@ -222,9 +222,9 @@ async function logout(){await db.auth.signOut();location.reload()}
 (async()=>{
  const {data}=await db.auth.getSession();
  if(data.session){
-  const {data:adminCheck}=await db.from("admin_users").select("user_id").eq("user_id",data.session.user.id).maybeSingle();
-  if(adminCheck){$("login").classList.add("hidden");$("app").classList.remove("hidden");$("who").textContent="Signed in as "+(data.session.user.email||"administrator");await refresh()}
-  else await db.auth.signOut();
+  const {data:adminCheck,error}=await db.rpc("is_store_admin");
+  if(!error&&adminCheck===true){$("login").classList.add("hidden");$("app").classList.remove("hidden");$("who").textContent="Signed in as "+(data.session.user.email||"administrator");await refresh()}
+  else if(!error)await db.auth.signOut();
  }
 })();
 </script>
