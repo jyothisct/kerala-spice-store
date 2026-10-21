@@ -313,136 +313,14 @@ footer a { color: var(--gold); }
 </section>
 
 <section class="section" id="shop">
-  <h2>Our Spice Collection</h2>
-  <p class="subtitle">Choose your spices and preferred pack sizes.</p>
-
-  <input
-    id="search"
-    type="search"
-    placeholder="🔍 Search for spices..."
-    aria-label="Search spices"
-  >
-
-  <div class="products" id="products">
-
-    <article class="card" data-name="Kerala Black Pepper">
-      <div class="spice-picture">🌶️</div>
-      <h3>Kerala Black Pepper</h3>
-      <p class="description">Bold, aromatic whole peppercorns.</p>
-      <div class="price">₹90 / 100 g</div>
-      <select aria-label="Black pepper pack size">
-        <option value="100 g" data-price="90">100 g — ₹90</option>
-        <option value="250 g" data-price="210">250 g — ₹210</option>
-        <option value="500 g" data-price="400">500 g — ₹400</option>
-        <option value="1 kg" data-price="760">1 kg — ₹760</option>
-      </select>
-      <button class="btn add-button" data-name="Kerala Black Pepper">Add to Cart</button>
-    </article>
-
-    <article class="card" data-name="Green Cardamom">
-      <div class="spice-picture">🌿</div>
-      <h3>Green Cardamom</h3>
-      <p class="description">Fragrant green cardamom pods.</p>
-      <div class="price">₹180 / 100 g</div>
-      <select aria-label="Cardamom pack size">
-        <option value="100 g" data-price="180">100 g — ₹180</option>
-        <option value="250 g" data-price="430">250 g — ₹430</option>
-        <option value="500 g" data-price="840">500 g — ₹840</option>
-        <option value="1 kg" data-price="1650">1 kg — ₹1,650</option>
-      </select>
-      <button class="btn add-button" data-name="Green Cardamom">Add to Cart</button>
-    </article>
-
-    <article class="card" data-name="Cinnamon">
-      <div class="spice-picture">🪵</div>
-      <h3>Cinnamon</h3>
-      <p class="description">Sweet and warming spice.</p>
-      <div class="price">₹65 / 100 g</div>
-      <select aria-label="Cinnamon pack size">
-        <option value="100 g" data-price="65">100 g — ₹65</option>
-        <option value="250 g" data-price="150">250 g — ₹150</option>
-        <option value="500 g" data-price="290">500 g — ₹290</option>
-        <option value="1 kg" data-price="560">1 kg — ₹560</option>
-      </select>
-      <button class="btn add-button" data-name="Cinnamon">Add to Cart</button>
-    </article>
-
-    <article class="card" data-name="Whole Cloves">
-      <div class="spice-picture">🌰</div>
-      <h3>Whole Cloves</h3>
-      <p class="description">Rich aroma and deep flavour.</p>
-      <div class="price">₹100 / 100 g</div>
-      <select aria-label="Cloves pack size">
-        <option value="100 g" data-price="100">100 g — ₹100</option>
-        <option value="250 g" data-price="235">250 g — ₹235</option>
-        <option value="500 g" data-price="450">500 g — ₹450</option>
-        <option value="1 kg" data-price="870">1 kg — ₹870</option>
-      </select>
-      <button class="btn add-button" data-name="Whole Cloves">Add to Cart</button>
-    </article>
-
-    <article class="card" data-name="Turmeric Powder">
-      <div class="spice-picture">🟡</div>
-      <h3>Turmeric Powder</h3>
-      <p class="description">Golden colour for everyday cooking.</p>
-      <div class="price">₹40 / 100 g</div>
-      <select aria-label="Turmeric pack size">
-        <option value="100 g" data-price="40">100 g — ₹40</option>
-        <option value="250 g" data-price="90">250 g — ₹90</option>
-        <option value="500 g" data-price="170">500 g — ₹170</option>
-        <option value="1 kg" data-price="320">1 kg — ₹320</option>
-      </select>
-      <button class="btn add-button" data-name="Turmeric Powder">Add to Cart</button>
-    </article>
-
-    <article class="card" data-name="Dry Ginger">
-      <div class="spice-picture">🫚</div>
-      <h3>Dry Ginger</h3>
-      <p class="description">Traditional warming spice.</p>
-      <div class="price">₹60 / 100 g</div>
-      <select aria-label="Dry ginger pack size">
-        <option value="100 g" data-price="60">100 g — ₹60</option>
-        <option value="250 g" data-price="140">250 g — ₹140</option>
-        <option value="500 g" data-price="270">500 g — ₹270</option>
-        <option value="1 kg" data-price="520">1 kg — ₹520</option>
-      </select>
-      <button class="btn add-button" data-name="Dry Ginger">Add to Cart</button>
-    </article>
-
-    <article class="card" data-name="Mustard Seeds">
-      <div class="spice-picture">🟤</div>
-      <h3>Mustard Seeds</h3>
-      <p class="description">Essential for Indian cooking.</p>
-      <div class="price">₹25 / 100 g</div>
-      <select aria-label="Mustard seeds pack size">
-        <option value="100 g" data-price="25">100 g — ₹25</option>
-        <option value="250 g" data-price="55">250 g — ₹55</option>
-        <option value="500 g" data-price="100">500 g — ₹100</option>
-        <option value="1 kg" data-price="190">1 kg — ₹190</option>
-      </select>
-      <button class="btn add-button" data-name="Mustard Seeds">Add to Cart</button>
-    </article>
-
-    <article class="card" data-name="Kerala Spice Mix">
-      <div class="spice-picture">🧂</div>
-      <h3>Kerala Spice Mix</h3>
-      <p class="description">Aromatic blend for home cooking.</p>
-      <div class="price">₹70 / 100 g</div>
-      <select aria-label="Spice mix pack size">
-        <option value="100 g" data-price="70">100 g — ₹70</option>
-        <option value="250 g" data-price="165">250 g — ₹165</option>
-        <option value="500 g" data-price="320">500 g — ₹320</option>
-        <option value="1 kg" data-price="620">1 kg — ₹620</option>
-      </select>
-      <button class="btn add-button" data-name="Kerala Spice Mix">Add to Cart</button>
-    </article>
-
+  <h2>Shop Kerala Products</h2>
+  <p class="subtitle">Spices, coconut products, snacks, dried foods, tea, coffee, pickles and sweets. Prices and pack sizes are loaded from our store catalogue.</p>
+  <input id="search" type="search" placeholder="🔍 Search products..." aria-label="Search products">
+  <div id="categoryFilters" style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:15px 0">
+    <button class="btn category-button" type="button" data-category="All">All Products</button>
   </div>
-
-  <p class="small">
-    Prices are temporary examples. Confirm actual prices and product
-    availability before accepting orders.
-  </p>
+  <div class="products" id="products"><p>Loading products...</p></div>
+  <p class="small">Prices shown are provisional estimates and must be verified before commercial sales. Products with zero stock should not be ordered.</p>
 </section>
 
 <section class="section" id="cart">
@@ -583,61 +461,136 @@ function money(amount) {
   return "₹" + amount.toLocaleString("en-IN");
 }
 
-/* Search spices */
-document.getElementById("search").addEventListener("input", function() {
-  const query = this.value.toLowerCase().trim();
+/* Catalogue loaded from Supabase so pack sizes and prices match checkout */
+let selectedCategory = "All";
+let storeProducts = [];
 
-  document.querySelectorAll(".card").forEach(function(card) {
-    const name = card.dataset.name.toLowerCase();
-    card.style.display = name.includes(query) ? "" : "none";
+function safeText(tag, text, className) {
+  const el = document.createElement(tag);
+  el.textContent = text == null ? "" : String(text);
+  if (className) el.className = className;
+  return el;
+}
+
+function renderProducts() {
+  const root = document.getElementById("products");
+  const query = document.getElementById("search").value.toLowerCase().trim();
+  root.replaceChildren();
+  const matches = storeProducts.filter(function(p) {
+    const matchesCategory = selectedCategory === "All" || p.category === selectedCategory;
+    const matchesText = (p.name + " " + (p.description || "") + " " + (p.category || "")).toLowerCase().includes(query);
+    return matchesCategory && matchesText;
   });
-});
-
-/* Update price when pack size changes */
-document.querySelectorAll(".card select").forEach(function(select) {
-  select.addEventListener("change", function() {
-    const card = this.closest(".card");
-    const option = this.options[this.selectedIndex];
-    const price = Number(option.dataset.price);
-
-    card.querySelector(".price").textContent =
-      money(price) + " / " + option.value;
+  if (!matches.length) {
+    root.appendChild(safeText("p", "No products found in this category."));
+    return;
+  }
+  matches.forEach(function(p) {
+    const card = safeText("article", "", "card");
+    card.dataset.name = p.name;
+    const picture = safeText("div", p.emoji || "🌿", "spice-picture");
+    const title = safeText("h3", p.name);
+    const desc = safeText("p", p.description || "Authentic Kerala product.", "description");
+    const availableVariants = (p.product_variants || []).filter(v => v.is_active);
+    const select = document.createElement("select");
+    select.setAttribute("aria-label", p.name + " pack size");
+    availableVariants.forEach(function(v) {
+      const option = document.createElement("option");
+      option.value = v.pack_size;
+      option.dataset.price = String(Number(v.price_paise || 0) / 100);
+      option.dataset.variantId = v.id;
+      option.dataset.stock = String(v.stock_quantity || 0);
+      option.disabled = Number(v.stock_quantity || 0) <= 0;
+      option.textContent = v.pack_size + " — " + money(Number(v.price_paise || 0) / 100) +
+        (option.disabled ? " (Out of stock)" : "");
+      select.appendChild(option);
+    });
+    const price = safeText("div", "", "price");
+    const add = safeText("button", "Add to Cart", "btn add-button");
+    add.type = "button";
+    add.dataset.name = p.name;
+    if (!availableVariants.some(v => Number(v.stock_quantity || 0) > 0)) {
+      add.disabled = true;
+      add.textContent = "Currently Unavailable";
+      add.style.opacity = "0.6";
+    }
+    function updateCardPrice() {
+      const op = select.options[select.selectedIndex];
+      price.textContent = op ? money(Number(op.dataset.price)) + " / " + op.value : "Currently unavailable";
+    }
+    select.addEventListener("change", updateCardPrice);
+    card.append(picture, title, desc, price, select, add);
+    updateCardPrice();
+    root.appendChild(card);
   });
-});
+}
 
-/* Add products to cart */
+function renderCategoryButtons() {
+  const root = document.getElementById("categoryFilters");
+  root.replaceChildren();
+  const categories = ["All", ...new Set(storeProducts.map(p => p.category || "Other").filter(Boolean))];
+  categories.forEach(function(category) {
+    const button = safeText("button", category === "All" ? "All Products" : category, "btn category-button");
+    button.type = "button";
+    if (category === selectedCategory) {
+      button.classList.add("btn-green");
+    }
+    button.addEventListener("click", function() {
+      selectedCategory = category;
+      renderCategoryButtons();
+      renderProducts();
+    });
+    root.appendChild(button);
+  });
+}
+
+async function loadStoreCatalogue() {
+  const root = document.getElementById("products");
+  try {
+    const {data, error} = await db.from("products")
+      .select("id,name,description,category,emoji,is_active,product_variants(id,pack_size,price_paise,stock_quantity,is_active)")
+      .eq("is_active", true)
+      .order("name");
+    if (error) throw error;
+    storeProducts = (data || []).map(p => ({
+      ...p,
+      product_variants: (p.product_variants || []).sort((a,b) => {
+        const weight = s => {
+          const m = String(s).match(/^([0-9.]+)\s*(g|kg|ml|l)$/i);
+          if (!m) return 999999;
+          let n = Number(m[1]), unit = m[2].toLowerCase();
+          if (unit === "kg" || unit === "l") n *= 1000;
+          return n;
+        };
+        return weight(a.pack_size) - weight(b.pack_size);
+      })
+    }));
+    renderCategoryButtons();
+    renderProducts();
+  } catch (error) {
+    root.replaceChildren(safeText("p", "Catalogue could not load. Please refresh later. " + (error.message || "")));
+  }
+}
+
+document.getElementById("search").addEventListener("input", renderProducts);
 document.getElementById("products").addEventListener("click", function(event) {
   const button = event.target.closest(".add-button");
-  if (!button) return;
-
+  if (!button || button.disabled) return;
   const card = button.closest(".card");
   const select = card.querySelector("select");
-  const option = select.options[select.selectedIndex];
-
+  const option = select && select.options[select.selectedIndex];
+  if (!option || option.disabled) {
+    alert("This pack is currently out of stock. Please choose another pack.");
+    return;
+  }
   const name = button.dataset.name;
   const size = option.value;
   const price = Number(option.dataset.price);
-
-  const existing = cart.find(function(item) {
-    return item.name === name && item.size === size;
-  });
-
-  if (existing) {
-    existing.qty++;
-  } else {
-    cart.push({
-      name: name,
-      size: size,
-      price: price,
-      qty: 1
-    });
-  }
-
+  const existing = cart.find(item => item.name === name && item.size === size);
+  if (existing) existing.qty++;
+  else cart.push({name, size, price, qty: 1});
   renderCart();
-
-  document.getElementById("cart").scrollIntoView({
-    behavior: "smooth"
-  });
+  document.getElementById("cart").scrollIntoView({behavior:"smooth"});
 });
 
 /* Display cart */
@@ -831,6 +784,7 @@ document.getElementById("orderButton").addEventListener("click", async function(
 });
 
 renderCart();
+loadStoreCatalogue();
 </script>
 
 </body>
