@@ -26,12 +26,15 @@ jobs:
       - name: Build Customer APK
         working-directory: android/customer
         run: gradle assembleDebug
+      - name: Give APKs clear, different filenames
+        run: |
+          mkdir -p release-apks
+          cp android/admin/app/build/outputs/apk/debug/app-debug.apk release-apks/Kerala-Fresh-Spices-ADMIN.apk
+          cp android/customer/app/build/outputs/apk/debug/app-debug.apk release-apks/Kerala-Fresh-Spices-CUSTOMER.apk
       - name: Upload APK files
         uses: actions/upload-artifact@v4
         with:
-          name: kerala-fresh-spices-android-apks
-          path: |
-            android/admin/app/build/outputs/apk/debug/app-debug.apk
-            android/customer/app/build/outputs/apk/debug/app-debug.apk
+          name: Kerala-Fresh-Spices-Android-Apps
+          path: release-apks/*.apk
           if-no-files-found: error
           retention-days: 30
