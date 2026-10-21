@@ -8,7 +8,7 @@ alter table public.products add column if not exists emoji text;
 -- Rename dried tapioca product to the requested display name.
 update public.products set name = 'Dry Tapioca', description = 'Dry tapioca pieces for cooking.', category = 'Dried Foods', emoji = '🍠'
 where lower(trim(name)) = lower(trim('Dried Tapioca Pieces'))
-  and not exists (select 1 from public.products where lower(trim(name)) = lower(trim('Dry Tapioca'));
+  and not exists (select 1 from public.products where lower(trim(name)) = lower(trim('Dry Tapioca')));
 
 -- Deactivate products explicitly removed from the catalogue.
 update public.products set is_active = false
