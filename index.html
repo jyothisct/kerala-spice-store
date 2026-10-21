@@ -365,6 +365,19 @@ footer a { color: var(--gold); }
       placeholder="6-digit PIN code"
     >
 
+    <div class="payment" style="margin:15px 0">
+      <h3>📍 My Saved Addresses</h3>
+      <p class="small">Save home, work or other delivery addresses on this device for quicker checkout next time.</p>
+      <label for="savedAddressSelect">Choose a saved address</label>
+      <select class="field" id="savedAddressSelect">
+        <option value="">Select saved address...</option>
+      </select>
+      <input class="field" id="addressLabel" maxlength="40" placeholder="Address label (e.g. Home, Office)">
+      <button class="btn" id="saveAddressButton" type="button" style="width:100%">Save Current Address</button>
+      <button class="btn" id="deleteAddressButton" type="button" style="width:100%;background:#f3d6d2">Delete Selected Address</button>
+      <p class="small" id="addressBookStatus" aria-live="polite">Saved addresses stay in this browser on this device. They are not synced to other devices.</p>
+    </div>
+
     <button class="btn btn-green" id="orderButton" style="width:100%">
       Send Order to WhatsApp
     </button>
@@ -456,6 +469,110 @@ const SUPABASE_URL = "https://vqjrqkghgwmqcsmojshf.supabase.co";
 const SUPABASE_KEY = "sb_publishable_U3nbPeJxZyWnu8CSkxxK8w_5hW2NMH1";
 const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const cart = [];
+const ADDRESS_STORAGE_KEY = "keralaFreshSpicesSavedAddressesV1";
+
+function readSavedAddresses() {
+  try {
+    const value = JSON.parse(localStorage.getItem(ADDRESS_STORAGE_KEY) || "[]");
+    return Array.isArray(value) ? value : [];
+  } catch (_) {
+    return [];
+  }
+}
+
+function writeSavedAddresses(items) {
+  try {
+    localStorage.setItem(ADDRESS_STORAGE_KEY, JSON.stringify(items));
+    return true;
+  } catch (_) {
+    document.getElementById("addressBookStatus").textContent =
+      "Could not save on this device. Check browser storage settings.";
+    return false;
+  }
+}
+
+function renderSavedAddresses(selectedId) {
+  const select = document.getElementById("savedAddressSelect");
+  select.replaceChildren();
+  const first = document.createElement("option");
+  first.value = "";
+  first.textContent = "Select saved address...";
+  select.appendChild(first);
+  readSavedAddresses().forEach(function(item) {
+    const option = document.createElement("option");
+    option.value = item.id;
+    option.textContent = item.label + " — " + item.address + ", " + item.pincode;
+    select.appendChild(option);
+  });
+  if (selectedId) select.value = selectedId;
+}
+
+function fillAddressForm(item) {
+  if (!item) return;
+  document.getElementById("customerName").value = item.name || "";
+  document.getElementById("customerPhone").value = item.phone || "";
+  document.getElementById("customerAddress").value = item.address || "";
+  document.getElementById("customerPincode").value = item.pincode || "";
+  document.getElementById("addressLabel").value = item.label || "";
+}
+
+document.getElementById("savedAddressSelect").addEventListener("change", function() {
+  const item = readSavedAddresses().find(x => x.id === this.value);
+  if (item) {
+    fillAddressForm(item);
+    document.getElementById("addressBookStatus").textContent = "Saved address loaded into delivery details.";
+  }
+});
+
+document.getElementById("saveAddressButton").addEventListener("click", function() {
+  const label = document.getElementById("addressLabel").value.trim();
+  const name = document.getElementById("customerName").value.trim();
+  const phone = document.getElementById("customerPhone").value.trim();
+  const address = document.getElementById("customerAddress").value.trim();
+  const pincode = document.getElementById("customerPincode").value.trim();
+  if (!label || !name || !phone || !address || !pincode) {
+    alert("Please enter an address label, full name, mobile number, delivery address and PIN code before saving.");
+    return;
+  }
+  if (!/^\\d{10}$/.test(phone) || !/^\\d{6}$/.test(pincode)) {
+    alert("Please check the 10-digit mobile number and 6-digit PIN code.");
+    return;
+  }
+  const saved = readSavedAddresses();
+  const existing = saved.findIndex(x => x.label.toLowerCase() === label.toLowerCase());
+  const item = {id: existing >= 0 ? saved[existing].id : (Date.now().toString(36) + Math.random().toString(36).slice(2,7)), label, name, phone, address, pincode};
+  if (existing >= 0) {
+    if (!confirm("A saved address with this label already exists. Replace it?")) return;
+    saved[existing] = item;
+  } else {
+    if (saved.length >= 10) {
+      alert("You can save up to 10 addresses on this device. Delete one before adding another.");
+      return;
+    }
+    saved.push(item);
+  }
+  if (writeSavedAddresses(saved)) {
+    renderSavedAddresses(item.id);
+    document.getElementById("addressBookStatus").textContent = "Address saved on this device.";
+  }
+});
+
+document.getElementById("deleteAddressButton").addEventListener("click", function() {
+  const select = document.getElementById("savedAddressSelect");
+  if (!select.value) {
+    alert("Choose a saved address to delete.");
+    return;
+  }
+  if (!confirm("Delete this saved address from this device?")) return;
+  const saved = readSavedAddresses().filter(x => x.id !== select.value);
+  if (writeSavedAddresses(saved)) {
+    renderSavedAddresses();
+    document.getElementById("addressLabel").value = "";
+    document.getElementById("addressBookStatus").textContent = "Saved address deleted from this device.";
+  }
+});
+
+renderSavedAddresses();
 
 function money(amount) {
   return "₹" + amount.toLocaleString("en-IN");
